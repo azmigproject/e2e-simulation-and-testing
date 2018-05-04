@@ -22,6 +22,7 @@
         },
         "vmName": {
             "type": "string",
+            "defaultValue": "[concat(resourceGroup().name, 'Vm')]",
             "metadata": {
                 "description": "Name of the Virtual Machine."
             }
@@ -43,6 +44,12 @@
             "type": "securestring",
             "metadata": {
                 "description": "Password for the Virtual Machine."
+            }
+        },
+        "confirmPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Re-enter password to confirm."
             }
         },
         "dnsNameForPublicIP": {
@@ -199,5 +206,11 @@
                 }
             }
         }
-    ]
+    ],
+    "outputs": {
+        "checkPassoword": {
+            "type": "bool",
+            "value": "[equals(parameters('password'), parameters('confirmPassword'))]"
+        }
+    }
 }
