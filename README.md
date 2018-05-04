@@ -5,11 +5,11 @@ It includes resources to automate setup and some benchmarking/testing commands f
 1. Aerospike server latency simulation and testing
 2. MySQL benchmarking
 
-## Aerospike server latency simulation and testing
+## Environment setup - Aerospike erver latency simulation and testing
 
 Following are the instructions to setup 3 VM environment for Aerospike server latency simulation and testing
 
-1. **Deploy Aerospike server VM** using the "Deploy to Azure" button given below.
+1. Deploy Aerospike server VM using the "Deploy to Azure" button given below.
 
     [![Click to deploy template on Azure](http://azuredeploy.net/deploybutton.png "Click to deploy template on Azure")](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazmigproject%2Fe2e-simulation-and-testing%2Fmaster%2Faerospike-server-latency%2Fdeploy-aerospike-server.json)
 
@@ -19,3 +19,17 @@ Following are the instructions to setup 3 VM environment for Aerospike server la
     [![Click to deploy template on Azure](http://azuredeploy.net/deploybutton.png "Click to deploy template on Azure")](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazmigproject%2Fe2e-simulation-and-testing%2Fmaster%2Faerospike-server-latency%2Fdeploy-aerospike-java-benchmark-client.json)
 
 4. Create a 3rd VM using Azure portal in the same resource group with the existing vnet and subnet. This VM will be used to ping the Aerospike server VM and Java benchmark client VM.
+
+## Commands for Java benchmarking client
+
+If private IP of Aerospike server = `10.0.0.4`
+
+```bash
+./run_benchmarks -h 10.0.0.4 -p 3000 -n test -k 10000000 -b 1 -o B:256 -w RU,80 -g 6000 -T 1 -z 8 -latency ycsb
+```
+
+OR
+
+```bash
+./run_benchmarks -h 10.0.0.4 -p 3000 -n test -k 10000000 -b 1 -o B:256 -w RU,80 -g 6000 -T 1 -z 8 -latency alt,7,1,us
+```

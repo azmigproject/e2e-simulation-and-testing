@@ -2,6 +2,7 @@
 
 # install Aerospike server
 apt-get update
+pip install --upgrade pip
 wget -O aerospike-server.tgz https://www.aerospike.com/download/server/latest/artifact/ubuntu16
 tar -zxvf aerospike-server.tgz
 cd aerospike-server-community-*
