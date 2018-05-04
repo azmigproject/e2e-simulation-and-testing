@@ -29,7 +29,7 @@ Following are the instructions to setup 3 VM environment for Aerospike server la
 Following are the instructions to execute Java benchmark client:
 
 1. Login to the Java benchmarking client VM.
-2. Change user to root.
+2. Switch to root.
     ```bash
     sudo su -
     ```
