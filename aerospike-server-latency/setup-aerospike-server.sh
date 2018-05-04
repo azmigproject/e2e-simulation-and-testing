@@ -28,4 +28,4 @@ then
 fi
 exit 0
 EOF
-reboot
+shutdown -r
