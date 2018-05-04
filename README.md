@@ -5,7 +5,9 @@ It includes resources to automate setup and some benchmarking/testing commands f
 1. Aerospike server latency simulation and testing
 2. MySQL benchmarking
 
-## Environment setup - Aerospike erver latency simulation and testing
+## Aerospike server latency simulation and testing
+
+### Setup environment
 
 Following are the instructions to setup 3 VM environment for Aerospike server latency simulation and testing
 
@@ -20,7 +22,24 @@ Following are the instructions to setup 3 VM environment for Aerospike server la
 
 4. Create a 3rd VM using Azure portal in the same resource group with the existing vnet and subnet. This VM will be used to ping the Aerospike server VM and Java benchmark client VM.
 
-## Commands for Java benchmarking client
+## Executing Java benchmark client
+
+### Instructions
+
+Following are the instructions to execute Java benchmark client:
+
+1. Login to the Java benchmarking client VM.
+2. Change user to root.
+    ```bash
+    sudo su -
+    ```
+3. Change directory.
+    ```bash
+    cd aerospike-client-java/benchmarks/
+    ```
+4. Check and execute the commands given in the [Commands](###Commands) section below.
+
+### Commands
 
 If private IP of Aerospike server = `10.0.0.4`
 
