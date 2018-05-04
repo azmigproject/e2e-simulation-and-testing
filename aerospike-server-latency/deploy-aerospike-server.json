@@ -4,6 +4,7 @@
     "parameters": {
         "imageOffer": {
             "type": "string",
+            "defaultValue": "UbuntuServer",
             "allowedValues": [
                 "UbuntuServer"
             ],
@@ -13,6 +14,7 @@
         },
         "osVersion": {
             "type": "string",
+            "defaultValue": "16.04-LTS",
             "allowedValues": [
                 "16.04-LTS"
             ],
