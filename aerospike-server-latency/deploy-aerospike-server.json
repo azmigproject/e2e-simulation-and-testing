@@ -237,8 +237,8 @@
             }
         },
         {
-            "name": "[concat(variables('vmName'),'/installcustomscript')]",
-            "type": "extensions",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(variables('vmName'),'-customScript')]",
             "location": "[resourceGroup().location]",
             "apiVersion": "2015-06-15",
             "dependsOn": [
