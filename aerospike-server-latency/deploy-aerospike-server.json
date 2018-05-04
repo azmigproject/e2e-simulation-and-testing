@@ -69,7 +69,7 @@
     "variables": {
         "extensionName": "CustomScript",
         "scenarioPrefix": "customscriptLinux",
-        "apiVersion": "2016-04-30-preview",
+        "apiVersion": "2015-06-15",
         "imagePublisher": "Canonical",
         "imageOffer": "[parameters('imageOffer')]",
         "ubuntuOSVersion": "[parameters('osVersion')]",
@@ -89,7 +89,7 @@
         "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
     },
     "resources": [{
-            "apiVersion": "2016-04-30-preview",
+            "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('publicIPAddressName')]",
             "location": "[resourceGroup().location]",
@@ -101,13 +101,13 @@
             }
         },
         {
-            "apiVersion": "2016-04-30-preview",
+            "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/networkSecurityGroups",
             "name": "[variables('networkSecurityGroupName')]",
             "location": "[resourceGroup().location]",
             "properties": {
                 "securityRules": [{
-                        "name": "Aerospike Server",
+                        "name": "Aerospike-Server",
                         "properties": {
                             "description": "Aerospike server ports",
                             "protocol": "Tcp",
@@ -121,7 +121,7 @@
                         }
                     },
                     {
-                        "name": "Aerospike Management Console",
+                        "name": "Aerospike-Management-Console",
                         "properties": {
                             "description": "For AMC web portal.",
                             "protocol": "Tcp",
@@ -135,10 +135,10 @@
                         }
                     },
                     {
-                        "name": "Default Deny",
+                        "name": "Default-Deny",
                         "properties": {
                             "description": "Default deny",
-                            "protocol": "Any",
+                            "protocol": "*",
                             "sourcePortRange": "*",
                             "destinationPortRange": "1024-65535",
                             "sourceAddressPrefix": "*",
@@ -152,7 +152,7 @@
             }
         },
         {
-            "apiVersion": "2016-04-30-preview",
+            "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[variables('virtualNetworkName')]",
             "location": "[resourceGroup().location]",
@@ -177,7 +177,7 @@
             }
         },
         {
-            "apiVersion": "2016-04-30-preview",
+            "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('nicName')]",
             "location": "[resourceGroup().location]",
@@ -201,7 +201,7 @@
             }
         },
         {
-            "apiVersion": "2016-04-30-preview",
+            "apiVersion": "2015-06-15",
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[variables('vmName')]",
             "location": "[resourceGroup().location]",
@@ -239,7 +239,7 @@
         {
             "type": "Microsoft.Compute/virtualMachines/extensions",
             "name": "[concat(variables('vmName'),'/installcustomscript')]",
-            "apiVersion": "2016-04-30-preview",
+            "apiVersion": "2015-06-15",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
