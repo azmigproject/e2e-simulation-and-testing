@@ -45,12 +45,6 @@
                 "description": "Password for the Virtual Machine."
             }
         },
-        "confirmPassword": {
-            "type": "securestring",
-            "metadata": {
-                "description": "Re-enter password to confirm."
-            }
-        },
         "dnsNameForPublicIP": {
             "type": "string",
             "metadata": {
@@ -205,11 +199,5 @@
                 }
             }
         }
-    ],
-    "outputs": {
-        "checkPassword": {
-            "type": "bool",
-            "value": "[equals(parameters('password'), parameters('confirmPassword'))]"
-        }
-    }
+    ]
 }
