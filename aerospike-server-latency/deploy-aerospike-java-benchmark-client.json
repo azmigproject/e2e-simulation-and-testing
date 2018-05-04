@@ -51,16 +51,16 @@
                 "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
             }
         },
-        "existingVirtualNetworkName": {
-            "type": "string",
-            "metadata": {
-                "description": "Name of the existing VNet"
-            }
-        },
         "existingVirtualNetworkResourceGroup": {
             "type": "string",
             "metadata": {
                 "description": "Name of the Resource Group containing the existing VNet"
+            }
+        },
+        "existingVirtualNetworkName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the existing VNet"
             }
         },
         "existingSubnetName": {
