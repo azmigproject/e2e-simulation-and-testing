@@ -73,18 +73,17 @@
         "imagePublisher": "Canonical",
         "imageOffer": "[parameters('imageOffer')]",
         "ubuntuOSVersion": "[parameters('osVersion')]",
-        "OSDiskName": "[concat(parameters('vmName'),'-osdisk')]",
         "networkSecurityGroupName": "[concat(parameters('vmName'),'-nsg')]",
         "nicName": "[concat(parameters('vmName'),'-nic')]",
+        "virtualNetworkName": "[concat(resourceGroup().name,'-vnet')]",
         "vnetAddressPrefix": "10.0.0.0/16",
-        "subnetName": "[concat(parameters('vmName'),'-subnet')]",
+        "subnetName": "[concat(resourceGroup().name,'-subnet')]",
         "subnetPrefix": "10.0.0.0/24",
         "storageAccountType": "Standard_LRS",
         "publicIPAddressName": "[concat(parameters('vmName'),'-pip')]",
         "publicIPAddressType": "Dynamic",
         "vmStorageAccountContainerName": "vhds",
         "vmName": "[parameters('vmName')]",
-        "virtualNetworkName": "[concat(resourceGroup().name,'vnet')]",
         "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
         "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
     },
@@ -182,6 +181,7 @@
             "name": "[variables('nicName')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
+                "[concat('Microsoft.Network/networkSecurityGroups/', variables('networkSecurityGroupName'))]",
                 "[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]",
                 "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
             ],
@@ -201,7 +201,7 @@
             }
         },
         {
-            "apiVersion": "2015-06-15",
+            "apiVersion": "2016-04-30-preview",
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[variables('vmName')]",
             "location": "[resourceGroup().location]",
