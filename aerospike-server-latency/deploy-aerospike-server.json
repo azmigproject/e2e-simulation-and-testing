@@ -69,7 +69,7 @@
     "variables": {
         "extensionName": "CustomScript",
         "scenarioPrefix": "customscriptLinux",
-        "apiVersion": "2015-05-01-preview",
+        "apiVersion": "2015-06-15",
         "imagePublisher": "Canonical",
         "imageOffer": "[parameters('imageOffer')]",
         "ubuntuOSVersion": "[parameters('osVersion')]",
@@ -89,7 +89,7 @@
         "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
     },
     "resources": [{
-            "apiVersion": "2015-05-01-preview",
+            "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('publicIPAddressName')]",
             "location": "[resourceGroup().location]",
@@ -152,7 +152,7 @@
             }
         },
         {
-            "apiVersion": "2015-05-01-preview",
+            "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[variables('virtualNetworkName')]",
             "location": "[resourceGroup().location]",
@@ -177,7 +177,7 @@
             }
         },
         {
-            "apiVersion": "2015-05-01-preview",
+            "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('nicName')]",
             "location": "[resourceGroup().location]",
@@ -239,7 +239,7 @@
         {
             "type": "Microsoft.Compute/virtualMachines/extensions",
             "name": "[concat(variables('vmName'),'/installcustomscript')]",
-            "apiVersion": "2015-05-01-preview",
+            "apiVersion": "2015-06-15",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
