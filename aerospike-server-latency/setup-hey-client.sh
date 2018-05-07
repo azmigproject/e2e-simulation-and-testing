@@ -1,44 +1,30 @@
 #!/bin/bash
 
 apt-get update
-mkdir /root/setup-logs
 
 # download and install Go
-printf "\nDownload and install Go...\n" >> /root/setup-logs/hey-installation.log
 cd /root
 wget https://dl.google.com/go/go1.10.2.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.10.2.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
 echo export PATH=$PATH:/usr/local/go/bin >> /etc/profile
 source /etc/profile
-printf "\nChecking version of Go...\n"  >> /root/setup-logs/hey-installation.log
-go version 2>> /root/setup-logs/hey-installation.log >> /root/setup-logs/hey-installation.log
-if [ $? > 0 ]
-then
-    printf "\n[Retry] Checking version of Go...\n" >> /root/setup-logs/hey-installation.log
-    /usr/local/go/bin/go version 2>> /root/setup-logs/hey-installation.log >> /root/setup-logs/hey-installation.log
-fi
-printf "\nSetting GOPATH...\n" >> /root/setup-logs/hey-installation.log
+go version
 mkdir go
 export GOPATH=$HOME/go
-echo GOPATH=$GOPATH >> /root/setup-logs/hey-installation.log
+echo GOPATH=$GOPATH
 
 # install hey
-printf "\nInstalling hey client...\n" >> /root/setup-logs/hey-installation.log
-/usr/local/go/bin/go get -u -v github.com/rakyll/hey 2>> /root/setup-logs/hey-installation.log
-printf "\nChecking hey client installation...\n" >> /root/setup-logs/hey-installation.log
-ls -al /root/go/bin >> /root/setup-logs/hey-installation.log
+go get -u -v github.com/rakyll/hey
+ls -al /root/go/bin
 
 # setup ulimit 
-printf "\nSetting up ulimit...\n" >> /root/setup-logs/hey-installation.log
 echo ulimit -n 635535 >> /etc/profile
 source /etc/profile
 
 # setup sysctl
-printf "\nSetting up sysctl values...\n" >> /root/setup-logs/hey-installation.log
 cat >> /etc/sysctl.conf << EOF
 net.ipv4.tcp_tw_recycle = 1
 net.ipv4.tcp_tw_reuse = 1
 EOF
-
-printf "\nComplete.\nRestarting...\n"
 shutdown -r
