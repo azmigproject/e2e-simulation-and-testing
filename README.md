@@ -7,7 +7,7 @@ It includes resources to automate setup and some benchmarking/testing commands f
 
 ## Aerospike server latency simulation and testing
 
-### Setup environment
+### Setup Environment - 2 VM
 
 Following are the instructions to setup 3 VM environment for Aerospike server latency simulation and testing
 
@@ -22,9 +22,9 @@ Following are the instructions to setup 3 VM environment for Aerospike server la
 
 4. Create a 3rd VM using Azure portal in the same resource group with the existing vnet and subnet. This VM will be used to ping the Aerospike server VM and Java benchmark client VM.
 
-## Executing Java benchmark client
+### Executing Java benchmark client
 
-### Instructions
+#### Instructions
 
 Following are the instructions to execute Java benchmark client:
 
@@ -39,7 +39,7 @@ Following are the instructions to execute Java benchmark client:
     ```
 4. Check and execute the commands given in the [Commands](###Commands) section below.
 
-### Commands
+#### Commands
 
 If private IP of Aerospike server = `10.0.0.4`
 
@@ -52,3 +52,11 @@ OR
 ```bash
 ./run_benchmarks -h 10.0.0.4 -p 3000 -n test -k 10000000 -b 1 -o B:256 -w RU,80 -g 6000 -T 1 -z 8 -latency alt,7,1,us
 ```
+
+### Setup Environment - 3 VM
+
+1. First setup the Aerospike server and Java benchmark client using the instructions in [Setup Environment - 2 VM](###Setup Environment - 2 VM).
+
+2. Now, deploy the hey client VM using the ARM template in the same resource group with the existing vnet and subnet.
+
+    [![Click to deploy template on Azure](http://azuredeploy.net/deploybutton.png "Click to deploy template on Azure")](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazmigproject%2Fe2e-simulation-and-testing%2Fmaster%2Faerospike-server-latency%2Fdeploy-hey-client.json)
