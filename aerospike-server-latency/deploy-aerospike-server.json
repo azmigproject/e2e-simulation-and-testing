@@ -2,52 +2,42 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "imageOffer": {
-            "type": "string",
-            "defaultValue": "UbuntuServer",
-            "allowedValues": [
-                "UbuntuServer"
-            ],
-            "metadata": {
-                "description": "VM OS name."
-            }
-        },
-        "osVersion": {
+        "ubuntuOSVersion": {
             "type": "string",
             "defaultValue": "16.04-LTS",
             "allowedValues": [
                 "16.04-LTS"
             ],
             "metadata": {
-                "description": "VM OS version."
+                "description": "Ubuntu OS version."
             }
         },
         "vmName": {
             "type": "string",
             "metadata": {
-                "description": "Name of the Virtual Machine."
+                "description": "Name of the VM."
             }
         },
         "vmSize": {
             "type": "string",
             "defaultValue": "Standard_DS3_v2",
             "metadata": {
-                "description": "Size of the Virtual Machine."
+                "description": "Size of the VM. Default: Standard_DS3_v2"
             }
         },
-        "username": {
+        "adminUsername": {
             "type": "string",
             "metadata": {
-                "description": "Username for the Virtual Machine."
+                "description": "Admin username for the Virtual Machine."
             }
         },
-        "password": {
+        "adminPassword": {
             "type": "securestring",
             "metadata": {
-                "description": "Password for the Virtual Machine."
+                "description": "Admin password for the Virtual Machine."
             }
         },
-        "dnsNameForPublicIP": {
+        "dnsLabelPrefix": {
             "type": "string",
             "metadata": {
                 "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
@@ -73,8 +63,8 @@
         "scenarioPrefix": "customscriptLinux",
         "apiVersion": "2015-06-15",
         "imagePublisher": "Canonical",
-        "imageOffer": "[parameters('imageOffer')]",
-        "ubuntuOSVersion": "[parameters('osVersion')]",
+        "imageOffer": "UbuntuServer",
+        "ubuntuOSVersion": "[parameters('ubuntuOSVersion')]",
         "networkSecurityGroupName": "[concat(parameters('vmName'),'-nsg')]",
         "nicName": "[concat(parameters('vmName'),'-nic')]",
         "virtualNetworkName": "[concat(resourceGroup().name,'-vnet')]",
@@ -97,7 +87,7 @@
             "properties": {
                 "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
                 "dnsSettings": {
-                    "domainNameLabel": "[parameters('dnsNameForPublicIP')]"
+                    "domainNameLabel": "[parameters('dnsLabelPrefix')]"
                 }
             }
         },
@@ -216,8 +206,8 @@
                 },
                 "osProfile": {
                     "computerName": "[variables('vmName')]",
-                    "adminUsername": "[parameters('username')]",
-                    "adminPassword": "[parameters('password')]"
+                    "adminUsername": "[parameters('adminUsername')]",
+                    "adminPassword": "[parameters('adminPassword')]"
                 },
                 "storageProfile": {
                     "imageReference": {
