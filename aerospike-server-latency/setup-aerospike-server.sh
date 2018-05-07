@@ -36,8 +36,8 @@ EOF
 
 # setup ulimit 
 printf "\nSetting up ulimit...\n"  >> /root/setup-logs/aerospike-setup.log
-echo ulimit -n 635535 >> ~/.bashrc
-source ~/.bashrc
+echo ulimit -n 635535 >> /etc/profile
+source /etc/profile
 ulimit -a >> /root/setup-logs/aerospike-setup.log
 
 # setup sysctl

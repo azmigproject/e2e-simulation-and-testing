@@ -8,8 +8,8 @@ printf "\nDownload and install Go...\n" >> /root/setup-logs/hey-installation.log
 cd /root
 wget https://dl.google.com/go/go1.10.2.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.10.2.linux-amd64.tar.gz
-echo export PATH=$PATH:/usr/local/go/bin >> ~/.bashrc
-source ~/.bashrc
+echo export PATH=$PATH:/usr/local/go/bin >> /etc/profile
+source /etc/profile
 printf "\nChecking version of Go...\n"  >> /root/setup-logs/hey-installation.log
 go version 2>> /root/setup-logs/hey-installation.log >> /root/setup-logs/hey-installation.log
 if [ $? > 0 ]
@@ -18,8 +18,8 @@ then
     /usr/local/go/bin/go version 2>> /root/setup-logs/hey-installation.log >> /root/setup-logs/hey-installation.log
 fi
 printf "\nSetting GOPATH...\n" >> /root/setup-logs/hey-installation.log
-echo export GOPATH=$HOME/go >> ~/.bashrc
-source ~/.bashrc
+mkdir go
+export GOPATH=$HOME/go
 echo GOPATH=$GOPATH >> /root/setup-logs/hey-installation.log
 
 # install hey
@@ -30,8 +30,8 @@ ls -al /root/go/bin >> /root/setup-logs/hey-installation.log
 
 # setup ulimit 
 printf "\nSetting up ulimit...\n" >> /root/setup-logs/hey-installation.log
-echo ulimit -n 635535 >> ~/.bashrc
-source ~/.bashrc
+echo ulimit -n 635535 >> /etc/profile
+source /etc/profile
 
 # setup sysctl
 printf "\nSetting up sysctl values...\n" >> /root/setup-logs/hey-installation.log
