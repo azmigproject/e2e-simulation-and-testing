@@ -11,26 +11,24 @@ It includes resources to automate setup and some benchmarking/testing commands f
 
 Following are the instructions to setup 3 VM environment for Aerospike server latency simulation and testing
 
-1. Setup [Aerospike server VM](###Create-Aerospike-server-VM).
-2. Setup [Aerospike Java benchmarking client VM](###Create-Aerospike-Java-benchmarking-client-VM).
+1. Setup [Aerospike server VM](#create-aerospike-server-vm).
+2. Setup [Aerospike Java benchmarking client VM](#create-aerospike-java-benchmarking-client-vm).
 3. Create a client VM using Azure portal in the same resource group with the existing vnet and subnet. This VM will be used to ping the Aerospike server VM and Java benchmarking client VM.
 
 ### Setup Environment - 3 VM
 
-1. Setup [Aerospike server VM](###Create-Aerospike-server-VM).
-2. Setup [Aerospike Java benchmarking client VM](###Create-Aerospike-Java-benchmarking-client-VM).
-3. Setup [hey client VM](###Create-hey-client-VM)
+1. Setup [Aerospike server VM](#create-aerospike-server-vm).
+2. Setup [Aerospike Java benchmarking client VM](#create-aerospike-java-benchmarking-client-vm).
+3. Setup [hey client VM](#create-hey-client-vm).
 4. Create a client VM using Azure portal in the same resource group with the existing vnet and subnet. This VM will be used to ping the Aerospike server VM and Java benchmarking client VM.
 
-### Aerospike server VM
+### Create Aerospike server VM
 
 1. Deploy Aerospike server VM using the "Deploy to Azure" button given below.
 
     [![Click to deploy template on Azure](http://azuredeploy.net/deploybutton.png "Click to deploy template on Azure")](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazmigproject%2Fe2e-simulation-and-testing%2Fmaster%2Faerospike-server-latency%2Fdeploy-aerospike-server.json)
 
-2. Name of the Vnet and subnet will be `%ResourceGroupName%-vnet` and `%ResourceGroupName%-subnet`, respectively. E.g.: if Resource group name = `TestRg` then Vnet name = `TestRg-vnet` and subnet name = `TestRg-subnet`.
-3. These details will used to create Java benchmarking client VM and hey client VM.
-4. Check if the Aerospike server and Aerospike management console is running
+2. Check if the Aerospike server and Aerospike management console is running
     ```bash
     sudo systemctl status aerospike
     sudo systemctl status amc
