@@ -4,6 +4,7 @@ apt-get update
 mkdir setup-logs
 
 # download and install Go
+cd /root
 wget https://dl.google.com/go/go1.10.2.linux-amd64.tar.gz >> setup-logs/hey-installation.log
 tar -C /usr/local -xzf go1.10.2.linux-amd64.tar.gz
 echo export PATH=$PATH:/usr/local/go/bin >> /etc/profile
