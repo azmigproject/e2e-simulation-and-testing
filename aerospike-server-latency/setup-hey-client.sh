@@ -11,7 +11,7 @@ echo export PATH=$PATH:/usr/local/go/bin >> /etc/profile
 source /etc/profile
 go version
 mkdir go
-export GOPATH=$HOME/go
+export GOPATH=/home/go
 echo GOPATH=$GOPATH
 
 # install hey
