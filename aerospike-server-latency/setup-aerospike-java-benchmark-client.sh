@@ -18,7 +18,8 @@ more pom.xml >> /root/setup-logs/java-client-installation.log
 
 # setup ulimit 
 printf "\nSetting up ulimit...\n"  >> /root/setup-logs/java-client-installation.log
-ulimit -n 65535
+echo ulimit -n 635535 >> /etc/profile
+source /etc/profile
 ulimit -a >> /root/setup-logs/java-client-installation.log
 
 # setup sysctl

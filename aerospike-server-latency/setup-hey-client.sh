@@ -14,12 +14,13 @@ go version >> /root/setup-logs/hey-installation.log
 
 # install hey
 printf "\nInstalling hey client...\n"  >> /root/setup-logs/hey-installation.log
-go get -u github.com/rakyll/hey
+go get -u -v github.com/rakyll/hey 2>>/root/setup-logs/hey-installation.log
 ls -al /root/go/bin >> /root/setup-logs/hey-installation.log
 
 # setup ulimit 
 printf "\nSetting up ulimit...\n"  >> /root/setup-logs/hey-installation.log
-ulimit -n 65535
+echo ulimit -n 635535 >> /etc/profile
+source /etc/profile
 ulimit -a >> /root/setup-logs/hey-installation.log
 
 # setup sysctl
