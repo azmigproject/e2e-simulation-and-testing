@@ -10,7 +10,7 @@ export PATH=$PATH:/usr/local/go/bin
 echo export PATH=$PATH:/usr/local/go/bin >> /etc/profile
 source /etc/profile
 go version
-export GOPATH=/home/go
+export GOPATH=/root/go
 echo GOPATH=$GOPATH
 
 # install hey
