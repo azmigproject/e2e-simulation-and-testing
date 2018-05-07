@@ -36,8 +36,8 @@ EOF
 
 # setup ulimit 
 printf "\nSetting up ulimit...\n"  >> /root/setup-logs/aerospike-setup.log
-echo ulimit -n 635535 >> /etc/profile
-source /etc/profile
+echo ulimit -n 635535 >> ~/.bashrc
+source ~/.bashrc
 ulimit -a >> /root/setup-logs/aerospike-setup.log
 
 # setup sysctl
@@ -46,4 +46,6 @@ cat >> /etc/sysctl.conf << EOF
 net.ipv4.tcp_tw_recycle = 1
 net.ipv4.tcp_tw_reuse = 1
 EOF
+
+printf "\nComplete.\nRestarting...\n"
 shutdown -r
