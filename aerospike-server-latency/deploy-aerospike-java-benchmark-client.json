@@ -12,17 +12,17 @@
                 "description": "VM OS version."
             }
         },
-        "vmName": {
-            "type": "string",
-            "metadata": {
-                "description": "Name of the VM."
-            }
-        },
         "vmSize": {
             "type": "string",
             "defaultValue": "Standard_DS3_v2",
             "metadata": {
                 "description": "Size of the VM. Default: Standard_DS3_v2"
+            }
+        },
+        "vmName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the VM."
             }
         },
         "adminUsername": {
