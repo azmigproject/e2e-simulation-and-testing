@@ -1,18 +1,18 @@
 #!/bin/bash
 
 apt-get update
-mkdir setup-logs
+mkdir /root/setup-logs
 
 # download and install Go
 cd /root
-wget https://dl.google.com/go/go1.10.2.linux-amd64.tar.gz >> setup-logs/hey-installation.log
+wget https://dl.google.com/go/go1.10.2.linux-amd64.tar.gz >> /root/setup-logs/hey-installation.log
 tar -C /usr/local -xzf go1.10.2.linux-amd64.tar.gz
 echo export PATH=$PATH:/usr/local/go/bin >> /etc/profile
 source /etc/profile
-go version >> setup-logs/hey-installation.log
+go version >> /root/setup-logs/hey-installation.log
 
 # install hey
-go get -u -v github.com/rakyll/hey >> setup-logs/hey-installation.log
+go get -u -v github.com/rakyll/hey >> /root/setup-logs/hey-installation.log
 
 # setup ulimit 
 ulimit -n 65535
