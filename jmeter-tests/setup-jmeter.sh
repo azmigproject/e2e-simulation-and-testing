@@ -1,4 +1,6 @@
 #!/bin/bash
 
-sudo apt-get update
-sudo apt-get install jmeter
+who
+pwd
+apt-get update -y
+apt-get install -y jmeter
