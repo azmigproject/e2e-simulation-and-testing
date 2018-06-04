@@ -12,7 +12,7 @@ apt-get install -y docker-ce
 mkdir -p /root/$service_name
 cd /root/$service_name
 wget -O service2.war https://raw.githubusercontent.com/azmigproject/e2e-simulation-and-testing/master/jmeter-tests/docker-vm/webapps/$service_name.war
-cat > DockerFile << EOF
+cat > Dockerfile << EOF
 FROM ubuntu:16.04
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install openjdk-8-jdk wget
