@@ -32,13 +32,19 @@ Following are the instructions to setup required VMs JMeter tests
     sudo systemctl status haproxy
     ```
 
-## Create Docker VM
+## Create Docker VM with service 2  - 2VMs, each running 1 instance of service 2 on docker
 
 1. Vnet and subnet will be same for all the VMs i.e. JMeter VM, haproxy VM and Docker VM.
 2. Hence, while creating haproxy VM, use the vnet and subnet name of JMeter VM. E.g.: if Resource group name of JMeter VM = `TestRg` then Vnet name = `TestRg-vnet` and subnet name = `TestRg-subnet`.
 3. Now, deploy the Docker VM using the ARM template in the same resource group with the existing vnet and subnet.
 
-    [![Click to deploy template on Azure](http://azuredeploy.net/deploybutton.png "Click to deploy template on Azure")](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazmigproject%2Fe2e-simulation-and-testing%2Fmaster%2Fjmeter-tests%2Fdocker-vm%2Fdeploy-docker-vm.json)
+    **Docker VM 1 running service 2v1**
+
+    [![Click to deploy template on Azure](http://azuredeploy.net/deploybutton.png "Click to deploy template on Azure")](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazmigproject%2Fe2e-simulation-and-testing%2Fmaster%2Fjmeter-tests%2Fdocker-vm%2Fdeploy-docker-vm-service2v1.json)
+
+    **Docker VM 2 running service 2v2**
+
+    [![Click to deploy template on Azure](http://azuredeploy.net/deploybutton.png "Click to deploy template on Azure")](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazmigproject%2Fe2e-simulation-and-testing%2Fmaster%2Fjmeter-tests%2Fdocker-vm%2Fdeploy-docker-vm-service2v2.json)
 
 4. Check if the Docker is running
     ```bash
