@@ -5,7 +5,7 @@
 Following are the instructions to setup required VMs JMeter tests
 
 1. Setup [JMeter VM](#create-jmeter-vm).
-2. Setup [haproxy VM](#create-haprxoy-vm).
+2. Setup [haproxy VM](#create-haproxy-vm).
 3. Setup [Docker VM](#create-docker-vm).
 
 ## Create JMeter VM
