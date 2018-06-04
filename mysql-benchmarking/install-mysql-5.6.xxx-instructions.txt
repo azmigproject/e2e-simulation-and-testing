@@ -1,17 +1,29 @@
 #!/bin/bash
 # https://gist.github.com/Voronenko/31161ab292c7967fcd38c092335a99e1 
 
-# remove existing one
+
+# -------------- Follow these one by one using terminal ------------------------- 
+# Uninstall existing mysql 5.7 if any
 sudo apt remove mysql-client mysql-server libmysqlclient-dev mysql-common
+# Check you removed everything
 sudo dpkg -l | grep mysql
 # sudo dpkg -P <package> [<package> ...].
 
-
+# Download the apt_config-debian package from Oracle and install it using from https://dev.mysql.com/get/mysql-apt-config_0.8.0-1_all.deb
 # install new
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.0-1_all.deb
+
+# Choose "MySQL 5.6" and "Ubuntu Wily" (assuming Xenial is not yet provided)
+sudo dpkg -i mysql-apt-config_0.8.0-1_all.deb
+
+# If this shows a 5.6 version, continue.
 sudo apt-cache policy mysql-server
+
+# -------------- Put these in a shell script and execute -------------------------
+# If not, check your /etc/apt/sources.list.d/mysql.list. It should look roughly like this:
+more /etc/apt/sources.list.d/mysql.list
 mkdir backup
 cp /etc/apt/sources.list.d/mysql.list backup/mysql.list.bk
-more /etc/apt/sources.list.d/mysql.list
 cat > /etc/apt/sources.list.d/mysql.list << EOF
 ### THIS FILE IS AUTOMATICALLY CONFIGURED ###
 # You may comment out entries below, but any other modifications may be lost.
@@ -22,6 +34,7 @@ deb http://repo.mysql.com/apt//ubuntu/ wily mysql-tools
 deb-src http://repo.mysql.com/apt/ubuntu/ wily mysql-5.6
 EOF
 echo "[Updated] /etc/apt/sources.list.d/mysql.list file"
+
 touch /etc/apt/preferences.d/mysql
 cat > /etc/apt/preferences.d/mysql <<EOF
 Package: *
@@ -29,6 +42,7 @@ Pin: origin "repo.mysql.com"
 Pin-Priority: 999
 EOF
 more /etc/apt/preferences.d/mysql
+
 sudo apt-get update -y
-sudo apt-get install -y mysql-community-client mysql-client mysql-server libmysqlclient-dev
+sudo apt-get install -y --allow-unauthenticated mysql-community-client mysql-client mysql-server libmysqlclient-dev
 mysql --version

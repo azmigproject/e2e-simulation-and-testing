@@ -14,5 +14,5 @@ if [ "$1" != "" ]
 then
     add_user $1
 else
-    echo "Enter Root password as command line parameter. E.g.: ./add-mysql-user.sh <password>"
+    echo "Enter MySQL Root password as command line parameter. E.g.: ./add-mysql-user.sh <password>"
 fi
