@@ -45,7 +45,7 @@
         },
         "customScriptLocation": {
             "type": "string",
-            "defaultValue": "https://raw.githubusercontent.com/azmigproject/e2e-simulation-and-testing/master/jmeter-tests/setup-jmeter.sh",
+            "defaultValue": "https://raw.githubusercontent.com/azmigproject/e2e-simulation-and-testing/master/jmeter-tests/docker-vm/setup-jmeter.sh",
             "metadata": {
                 "description": "The public URL of custom shell script."
             }
