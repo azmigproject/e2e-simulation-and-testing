@@ -35,7 +35,9 @@ Following are the instructions to setup required VMs JMeter tests. Please deploy
     ```
     Output should be like this.
     ```output
+    $ curl 10.0.0.5:80/service2/webresources/prime -w '\n'
     [1]: 500th prime number = 3571 [Tue Jun 05 09:10:35 UTC 2018 ]
+    $ curl 10.0.0.5:80/service2/webresources/prime -w '\n'
     [2]: 500th prime number = 3571 [Tue Jun 05 09:10:37 UTC 2018 ]
     ```
 
@@ -88,7 +90,9 @@ Following are the instructions to setup required VMs JMeter tests. Please deploy
     ```
     Output should be like this.
     ```output
+    $ curl localhost:80/service2/webresources/prime -w '\n'
     [1]: 500th prime number = 3571 [Tue Jun 05 09:10:35 UTC 2018 ]
+    $ curl localhost:80/service2/webresources/prime -w '\n'
     [2]: 500th prime number = 3571 [Tue Jun 05 09:10:37 UTC 2018 ]
     ```
 
@@ -120,9 +124,11 @@ Following are the instructions to setup required VMs JMeter tests. Please deploy
     Output should be like this on
     - Docker VM with service2v1 (first instance of service2)
     ```output
+    $ curl localhost:8882/service2/webresources/prime -w '\n'
     [1]: 500th prime number = 3571 [Tue Jun 05 09:10:35 UTC 2018 ]
     ```
     - Docker VM with service2v2 (second instance of service2)
     ```output
+    $ curl localhost:8882/service2/webresources/prime -w '\n'
     [2]: 500th prime number = 3571 [Tue Jun 05 09:10:37 UTC 2018 ]
     ```
