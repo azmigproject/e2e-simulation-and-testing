@@ -17,7 +17,7 @@ FROM ubuntu:16.04
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install openjdk-8-jdk wget
 RUN mkdir /usr/local/tomcat
-RUN wget http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.31/bin/apache-tomcat-8.5.31.tar.gz -O /tmp/tomcat.tar.gz
+RUN wget http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.31/bin/apache-tomcat-8.5.31.tar.gz -O /tmp/tomcat.tar.gz
 RUN cd /tmp && tar xvfz tomcat.tar.gz
 RUN cp -Rv /tmp/apache-tomcat-8.5.31/* /usr/local/tomcat/
 EXPOSE 8080
@@ -29,3 +29,14 @@ docker build . -t $service_name
 docker images
 docker run -d --name=service2 -p 8882:8080 -t $service_name
 docker ps
+
+# Start Docker container at start up
+sed -i.bak '/exit 0/d' /etc/rc.local
+cat >> /etc/rc.local << EOF
+sudo docker start service2
+if [ $? != 0 ]
+then
+    exit $?
+fi
+exit 0
+EOF
