@@ -13,9 +13,9 @@ Following are the instructions to setup required VMs JMeter tests. Please deploy
 1. Deploy JMeter VM using the "Deploy to Azure" button given below.
 
     [![Click to deploy template on Azure](http://azuredeploy.net/deploybutton.png "Click to deploy template on Azure")](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazmigproject%2Fe2e-simulation-and-testing%2Fmaster%2Fjmeter-tests%2Fjmeter-vm%2Fdeploy-jmeter-vm.json)
-2. Check if the JMeter is running
+2. Check if JMeter is installed
     ```bash
-    sudo systemctl status jmeter
+    which jmeter
     ```
 3. Run JMeter in non-GUI mode.
     ```bash
@@ -50,7 +50,7 @@ Following are the instructions to setup required VMs JMeter tests. Please deploy
     [![Click to deploy template on Azure](http://azuredeploy.net/deploybutton.png "Click to deploy template on Azure")](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazmigproject%2Fe2e-simulation-and-testing%2Fmaster%2Fjmeter-tests%2Fhaproxy-vm%2Fdeploy-haproxy-vm.json)
 4. Check if the haproxy is running
     ```bash
-    sudo systemctl status haproxy
+    systemctl status haproxy
     ```
 5. Setup the haproxy configuration file as per the requirement. Path: `/etc/haproxy/haproxy.cfg`
 6. Create **frontend**. Add following lines in haproxy configuration file.
