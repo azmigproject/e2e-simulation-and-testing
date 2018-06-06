@@ -4,9 +4,11 @@
 
 Following are the instructions to setup required VMs JMeter tests. Please deploy them in the same order.
 
-1. Setup [JMeter VM](#create-jmeter-vm).
-2. Setup [haproxy VM](#create-haproxy-vm).
-3. Setup [Docker VM](#create-docker-vm).
+1. Setup [JMeter VM](#create-jmeter-vm). Static private IP - `172.17.17.4`
+2. Setup [haproxy VM](#create-haproxy-vm). Static private IP - `172.17.17.5`
+3. Setup [Docker VM](#create-docker-vm). Static private IP
+    - Docker VM 1 with Service2 instance 1 - `172.17.17.6`
+    - Docker VM 2 with Service2 instance 2 - `172.17.17.7`
 
 ## Create JMeter VM
 
@@ -29,15 +31,15 @@ Following are the instructions to setup required VMs JMeter tests. Please deploy
     ```bash
     curl <ip-address-of-haproxy-vm>:80/service2/webresources/prime -w '\n'
     ```
-    For example:
+    So, as we are using static private IP addresses
     ```bash
-    curl 10.0.0.5:80/service2/webresources/prime -w '\n'
+    curl 172.17.17.5:80/service2/webresources/prime -w '\n'
     ```
     Output should be like this.
     ```output
-    $ curl 10.0.0.5:80/service2/webresources/prime -w '\n'
+    $ curl 172.17.17.5:80/service2/webresources/prime -w '\n'
     [1]: 500th prime number = 3571 [Tue Jun 05 09:10:35 UTC 2018 ]
-    $ curl 10.0.0.5:80/service2/webresources/prime -w '\n'
+    $ curl 172.17.17.5:80/service2/webresources/prime -w '\n'
     [2]: 500th prime number = 3571 [Tue Jun 05 09:10:37 UTC 2018 ]
     ```
 
@@ -52,39 +54,18 @@ Following are the instructions to setup required VMs JMeter tests. Please deploy
     ```bash
     systemctl status haproxy
     ```
-5. Setup the haproxy configuration file as per the requirement. Path: `/etc/haproxy/haproxy.cfg`
-6. Create **frontend**. Add following lines in haproxy configuration file.
-    ```cfg
-    frontend http_front
-        bind *:80
-        mode http
-        default_backend service2_back
-    ```
-7. Create **backend**. Add following lines in haproxy configuration file.
-    ```cfg
-    backend service2_back
-        mode http
-        balance roundrobin
-        server docker-vm-service2v1 <ip-address-of-docker-vm1>:8882
-        server docker-vm-service2v2 <ip-address-of-docker-vm2>:8882
-    ```
-8. To enable **HTTP keep alive**, add following line in both frontend and backend. For more information check [http-keep-alive](https://cbonte.github.io/haproxy-dconv/1.6/configuration.html#4.2-option%20http-keep-alive)
-    ```cfg
-    option http-kee-alive
-    ```
-9. To enable **HTTP reuse**, add following line in backend only. For more information check [http-reuse](https://cbonte.github.io/haproxy-dconv/1.6/configuration.html#4.2-http-reuse)
-    ```cfg
-    option http-reuse safe
-    ```
-10. Check whether the configuration is valid or not.
+5. Path of haproxy configuration file: `/etc/haproxy/haproxy.cfg`
+6. **HTTP keep alive** is enabled by default. You can check using `less` command. For more information about HTTP keep alive check [http-keep-alive](https://cbonte.github.io/haproxy-dconv/1.6/configuration.html#4.2-option%20http-keep-alive)
     ```bash
-    haproxy -c -f /etc/haproxy/haproxy.cfg
+    less /etc/haproxy/haproxy.cfg
     ```
-11. Restart `haproxy`.
-    ```bash
-    systemctl restart haproxy
-    ```
-12. To verify that the haproxy environment is setup correctly, run following command **twice**
+7. For **HTTP reuse**, update the haproxy configuration file as per the instruction given below. For more information about HTTP reuse check [http-reuse](https://cbonte.github.io/haproxy-dconv/1.6/configuration.html#4.2-http-reuse)
+    - To enable  **HTTP reuse**, add following line in  `backend service2_back` section of `/etc/harpoxy/haproxy.cfg` file. **Please note**:
+        ```cfg
+        option http-reuse safe
+        ```
+    - To disable **HTTP reuse**, just delete the above line.
+8. To verify that the haproxy environment is setup correctly, run following command **twice**
     ```bash
     curl localhost:80/service2/webresources/prime -w '\n'
     ```
