@@ -63,6 +63,7 @@
         },
         "privateIPAddress": {
             "type": "string",
+            "defaultValue": "172.17.17.6",
             "allowedValues": [
                 "172.17.17.6"
             ],
