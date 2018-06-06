@@ -17,3 +17,4 @@ backend service2_back
     server docker-vm-service2v1 172.17.17.6:8882
     server docker-vm-service2v2 172.17.17.7:8882
 EOF
+systemctl restart haproxy
