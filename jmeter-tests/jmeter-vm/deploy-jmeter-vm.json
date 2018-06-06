@@ -43,6 +43,15 @@
                 "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
             }
         },
+        "privateIPAddress": {
+            "type": "string",
+            "allowedValues": [
+                "172.17.17.4"
+            ],
+            "metadata": {
+                "description": "Static Private IP will be assigned to the machine."
+            }
+        },
         "customScriptLocation": {
             "type": "string",
             "defaultValue": "https://raw.githubusercontent.com/azmigproject/e2e-simulation-and-testing/master/jmeter-tests/jmeter-vm/setup-jmeter.sh",
@@ -68,9 +77,9 @@
         "networkSecurityGroupName": "[concat(parameters('vmName'),'-nsg')]",
         "nicName": "[concat(parameters('vmName'),'-nic')]",
         "virtualNetworkName": "[concat(resourceGroup().name,'-vnet')]",
-        "vnetAddressPrefix": "10.0.0.0/16",
+        "vnetAddressPrefix": "172.17.17.0/24",
         "subnetName": "[concat(resourceGroup().name,'-subnet')]",
-        "subnetPrefix": "10.0.0.0/24",
+        "subnetPrefix": "172.17.17.0/26",
         "storageAccountType": "Standard_LRS",
         "publicIPAddressName": "[concat(parameters('vmName'),'-pip')]",
         "publicIPAddressType": "Dynamic",
@@ -149,7 +158,8 @@
                 "ipConfigurations": [{
                     "name": "ipconfig1",
                     "properties": {
-                        "privateIPAllocationMethod": "Dynamic",
+                        "privateIPAllocationMethod": "Static",
+                        "privateIPAddress": "[parameters('privateIPAddress')]",
                         "publicIPAddress": {
                             "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
                         },
