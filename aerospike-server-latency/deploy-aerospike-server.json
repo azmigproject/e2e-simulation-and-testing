@@ -126,6 +126,20 @@
                         }
                     },
                     {
+                        "name": "SSH",
+                        "properties": {
+                            "description": "SSH",
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "22",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 300,
+                            "direction": "Inbound"
+                        }
+                    },
+                    {
                         "name": "Default-Deny",
                         "properties": {
                             "description": "Default deny",
