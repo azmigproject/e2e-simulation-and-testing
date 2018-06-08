@@ -61,6 +61,16 @@
                 "description": "Name of the subnet in the VNet you want to use."
             }
         },
+        "privateIPAddress": {
+            "type": "string",
+            "defaultValue": "172.17.17.5",
+            "allowedValues": [
+                "172.17.17.5"
+            ],
+            "metadata": {
+                "description": "Static Private IP will be assigned to the machine."
+            }
+        },
         "customScriptLocation": {
             "type": "string",
             "defaultValue": "https://raw.githubusercontent.com/azmigproject/e2e-simulation-and-testing/master/aerospike-server-latency/setup-aerospike-java-benchmark-client.sh",

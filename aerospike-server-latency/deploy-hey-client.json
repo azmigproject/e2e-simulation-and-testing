@@ -61,6 +61,16 @@
                 "description": "Name of the subnet in the VNet you want to use."
             }
         },
+        "privateIPAddress": {
+            "type": "string",
+            "defaultValue": "172.17.17.6",
+            "allowedValues": [
+                "172.17.17.6"
+            ],
+            "metadata": {
+                "description": "Static Private IP will be assigned to the machine."
+            }
+        },
         "customScriptLocation": {
             "type": "string",
             "defaultValue": "https://raw.githubusercontent.com/azmigproject/e2e-simulation-and-testing/master/aerospike-server-latency/setup-hey-client.sh",
@@ -117,7 +127,8 @@
                 "ipConfigurations": [{
                     "name": "ipconfig1",
                     "properties": {
-                        "privateIPAllocationMethod": "Dynamic",
+                        "privateIPAllocationMethod": "Static",
+                        "privateIPAddress": "[parameters('privateIPAddress')]",
                         "publicIPAddress": {
                             "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
                         },
