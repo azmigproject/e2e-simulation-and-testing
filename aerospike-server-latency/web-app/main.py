@@ -61,7 +61,8 @@ def read():
     data = {
         "key": str(key),
         "metadata": metadata,
-        "record": record
+        "record": record,
+        "timestamp": strftime("%Y-%m-%d %H:%M:%S", gmtime())
     }
     # Close the connection to the Aerospike cluster
     client.close()
