@@ -128,6 +128,7 @@ docker build . -t python-web-service
 docker images
 docker run -d -i --name=py-web-service -p 8882:5000 -t python-web-service
 docker ps
+curl localhost:8882/write
 
 # start docker container at start up 
 sed -i.bak '/exit 0/d' /etc/rc.local
