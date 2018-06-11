@@ -93,6 +93,7 @@
         "imagePublisher": "Canonical",
         "imageOffer": "UbuntuServer",
         "ubuntuOSVersion": "[parameters('ubuntuOSVersion')]",
+        "networkSecurityGroupName": "[concat(parameters('vmName'),'-nsg')]",
         "nicName": "[concat(parameters('vmName'),'-nic')]",
         "storageAccountType": "Standard_LRS",
         "publicIPAddressName": "[concat(parameters('vmName'),'-pip')]",
