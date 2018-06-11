@@ -47,7 +47,7 @@ import json
 
 # Configure the client
 config = {
-  'hosts': [('10.0.0.4', 3000)]
+  'hosts': [('172.17.17.4', 3000)]
 }
 # Records are addressable via a tuple of (namespace, set, key)
 read_key = ('test', 'demo', 'foo')
@@ -111,7 +111,7 @@ def read():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
 
 EOF
 # create docker file

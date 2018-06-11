@@ -40,13 +40,13 @@ Following are the instructions to setup 3 VM environment for Aerospike server la
     sudo su -
     cd aerospike-client-java/benchmarks/
     ```
-5. Starting Java benchmark client, if private IP of Aerospike server = `10.0.0.4`
+5. Starting Java benchmark client, as the private IP of Aerospike server = `172.17.17.4`
     ```bash
-    ./run_benchmarks -h 10.0.0.4 -p 3000 -n test -k 10000000 -b 1 -o B:256 -w RU,80 -g 6000 -T 1 -z 8 -latency ycsb
+    ./run_benchmarks -h 172.17.17.4 -p 3000 -n test -k 10000000 -b 1 -o B:256 -w RU,80 -g 6000 -T 1 -z 8 -latency ycsb
     ```
     OR
     ```bash
-    ./run_benchmarks -h 10.0.0.4 -p 3000 -n test -k 10000000 -b 1 -o B:256 -w RU,80 -g 6000 -T 1 -z 8 -latency alt,7,1,us
+    ./run_benchmarks -h 172.17.17.4 -p 3000 -n test -k 10000000 -b 1 -o B:256 -w RU,80 -g 6000 -T 1 -z 8 -latency alt,7,1,us
     ```
 
 ## Create hey client VM
