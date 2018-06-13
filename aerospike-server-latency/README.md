@@ -63,7 +63,11 @@ Following are the instructions to setup 3 VM environment for Aerospike server la
     cd /root/go/bin
     ls -l
     ```
-5. Executing hey client
+5. Before starting hey client, run the following command. This will verify that hey VM is able to access the web application installed on 2nd VM (Java benchmarking client VM) and will write some data in Aerospike server database which be read by hey client.
     ```bash
-    ./hey [options...] <url>
+    curl 172.17.17.5:8882/write -w '\n'
+    ```
+6. Executing hey client
+    ```bash
+    ./hey [options...] http://172.17.17.5:8882/read
     ```
