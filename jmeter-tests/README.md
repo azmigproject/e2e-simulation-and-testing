@@ -59,12 +59,12 @@ Following are the instructions to setup required VMs JMeter tests. Please deploy
     ```bash
     less /etc/haproxy/haproxy.cfg
     ```
-7. For **HTTP reuse**, update the haproxy configuration file as per the instruction given below. For more information about HTTP reuse check [http-reuse](https://cbonte.github.io/haproxy-dconv/1.6/configuration.html#4.2-http-reuse)
-    - To enable  **HTTP reuse**, add following line in  `backend service2_back` section of `/etc/harpoxy/haproxy.cfg` file. **Please note**:
+7. For **HTTP reuse**, edit the haproxy configuration file as per the instruction given below. For more information about HTTP reuse check [http-reuse](https://cbonte.github.io/haproxy-dconv/1.6/configuration.html#4.2-http-reuse)
+    - To enable  **HTTP reuse**, uncomment following line in  `backend service2_back` section of `/etc/harpoxy/haproxy.cfg` file by deleting `#` character. It should look like this once uncommented.
         ```cfg
-        option http-reuse safe
+        http-reuse safe
         ```
-    - To disable **HTTP reuse**, just delete the above line.
+    - To disable **HTTP reuse**, comment it again.
 8. To verify that the haproxy environment is setup correctly, run following command **twice**
     ```bash
     curl localhost:80/service2/webresources/prime -w '\n'
